@@ -1,5 +1,5 @@
 class StaticsController < ApplicationController
   def index
-    flash[:success] = "Welcome to the Sample App!"
+    # flash[:success] = "Welcome to the Sample App!"
   end
 end
