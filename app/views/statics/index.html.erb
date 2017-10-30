@@ -1,1 +1,46 @@
 <h1> this is index page</h1>
+
+<h1>Listings</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+      <th>Property type</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Description</th>
+      <th>Num of rooms</th>
+      <th>Num of bathrooms</th>
+      <th>Num of beds</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Listing.all.each do |listing| %>
+      <tr>
+        <td><%= listing.title %></td>
+        <td><%= listing.user.name %></td>
+        <td><%= listing.property_type %></td>
+        <td><%= listing.address %></td>
+        <td><%= listing.city %></td>
+        <td><%= listing.country %></td>
+        <td><%= listing.description %></td>
+        <td><%= listing.num_of_rooms %></td>
+        <td><%= listing.num_of_bathrooms %></td>
+        <td><%= listing.num_of_beds %></td>
+        <td><%= listing.price %></td>
+        <td><%= link_to 'Show', listing %></td>
+        <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+        <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
   # GET /listings.json
   def index
     @listings = Listing.all
+    @listing = Listing.new
   end
 
   # GET /listings/1
@@ -14,7 +15,11 @@ class ListingsController < ApplicationController
 
   # GET /listings/new
   def new
-    @listing = Listing.new
+    if !signed_in?
+      redirect_to sign_in_path
+    else
+      @listing = Listing.new
+    end
   end
 
   # GET /listings/1/edit
@@ -24,7 +29,7 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(listing_params)
+    @listing = current_user.listings.new(listing_params)
 
     respond_to do |format|
       if @listing.save
@@ -69,6 +74,6 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:user_id, :title, :description, :property_type, :num_of_rooms, :num_of_bathrooms, :price)
+      params.require(:listing).permit(:user_id, :title, :description, :property_type, :num_of_rooms, :num_of_bathrooms, :price, :address, :city, :country, :max_guest, :num_of_beds)
     end
 end

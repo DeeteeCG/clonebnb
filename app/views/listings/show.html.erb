@@ -1,9 +1,4 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @listing.user %>
-</p>
 
 <p>
   <strong>Title:</strong>
@@ -11,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @listing.description %>
+  <strong>User:</strong>
+  <%= @listing.user.name %>
 </p>
 
 <p>
@@ -21,8 +16,28 @@
 </p>
 
 <p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @listing.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @listing.country %>
+</p>
+
+<p>
   <strong>Num of rooms:</strong>
   <%= @listing.num_of_rooms %>
+</p>
+
+<p>
+  <strong>Num of beds:</strong>
+  <%= @listing.num_of_beds %>
 </p>
 
 <p>
@@ -31,8 +46,18 @@
 </p>
 
 <p>
+  <strong>Max guest:</strong>
+  <%= @listing.max_guest %>
+</p>
+
+<p>
   <strong>Price:</strong>
   <%= @listing.price %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
 </p>
 
 <%= link_to 'Edit', edit_listing_path(@listing) %> |

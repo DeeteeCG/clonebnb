@@ -12,18 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :listing_user_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :listing_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :listing_description %>
   </div>
 
   <div class="field">
@@ -32,18 +22,48 @@
   </div>
 
   <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :listing_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :listing_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country, id: :listing_country %>
+  </div>
+
+  <div class="field">
     <%= form.label :num_of_rooms %>
-    <%= form.text_field :num_of_rooms, id: :listing_num_of_rooms %>
+    <%= form.number_field :num_of_rooms, id: :listing_num_of_rooms, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num_of_beds %>
+    <%= form.number_field :num_of_beds, id: :listing_num_of_beds, min: 0 %>
   </div>
 
   <div class="field">
     <%= form.label :num_of_bathrooms %>
-    <%= form.text_field :num_of_bathrooms, id: :listing_num_of_bathrooms %>
+    <%= form.number_field :num_of_bathrooms, id: :listing_num_of_bathrooms, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_guest %>
+    <%= form.number_field :max_guest, id: :listing_max_guest, min: 0, min: 0 %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.number_field :price, id: :listing_price %>
+    <%= form.number_field :price, id: :listing_price, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :listing_description %>
   </div>
 
   <div class="actions">
