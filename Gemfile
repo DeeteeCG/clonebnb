@@ -38,6 +38,8 @@ gem 'figaro'
 
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
+gem 'kaminari'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 
