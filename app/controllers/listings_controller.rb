@@ -4,8 +4,12 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    @listings = Listing.all
-    @listing = Listing.new
+    if !signed_in?
+      redirect_to sign_in_path
+    else
+      @listings = Listing.all
+      @listing = Listing.new
+    end
   end
 
   # GET /listings/1
