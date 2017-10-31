@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include Clearance::User
+  # validates :password, length: { in: 6..20 }
 
   has_many :authentications, dependent: :destroy
   has_many :listings, dependent: :destroy

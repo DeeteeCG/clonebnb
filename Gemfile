@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'clearance'
 gem 'figaro'
 
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 
