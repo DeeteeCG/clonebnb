@@ -20,7 +20,8 @@
   </thead>
 
   <tbody>
-    <% Listing.where(user_id: current_user.id).each do |listing| %>
+    <% @listings = Listing.where(user_id: current_user.id).page params[:page] %>
+    <% @listings.each do |listing| %>
       <tr>
         <td><%= listing.title %></td>
         <td><%= listing.user.name %></td>
@@ -41,4 +42,4 @@
   </tbody>
 </table>
 
-<br>
+<%= paginate @listings %>

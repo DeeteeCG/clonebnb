@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
       redirect_to sign_in_path
     else
       @listings = Listing.all
-      @listing = Listing.new
+       @listing = Listing.new
     end
   end
 

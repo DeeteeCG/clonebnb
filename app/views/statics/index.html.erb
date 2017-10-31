@@ -22,7 +22,8 @@
   </thead>
 
   <tbody>
-    <% Listing.all.each do |listing| %>
+    <% @listings = Listing.order('updated_at DESC, title').page params[:page] %>
+    <% @listings.all.each do |listing| %>
       <tr>
         <td><%= listing.title %></td>
         <td><%= listing.user.name %></td>
@@ -43,4 +44,4 @@
   </tbody>
 </table>
 
-<br>
+<%= paginate @listings %>
