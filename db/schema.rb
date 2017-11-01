@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029163927) do
+ActiveRecord::Schema.define(version: 20171101065038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171029163927) do
     t.string "country"
     t.string "max_guest"
     t.string "num_of_beds"
+    t.boolean "verification", default: false
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171029163927) do
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
     t.string "name"
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
