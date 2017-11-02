@@ -31,7 +31,8 @@
           <!-- <a class="nav-link" href="#">Features</a> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <%= link_to "Verify Listings ", verify_listings_path, :class=>"nav-link"%>
+          <!-- <a class="nav-link" href="#">Pricing</a> -->
         </li>
       </ul>
       <span class="navbar-text">
@@ -44,7 +45,7 @@
           <% if !signed_in? -%>
             <%= link_to t(".sign_up"), sign_up_path %>
           <% else %>
-            <%= current_user.name %>
+            <%= current_user.name + ' (' + current_user.role + ')'%>
           <% end -%>
         </div>
         <div id="header">

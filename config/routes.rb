@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   root "statics#index"
 
+  get "/listings/verify_listings" => "listings#verify_listings", as: :verify_listings
   resources :listings
+  get "/listings/:id/verify" => "listings#verify", as: :verify_listing
+
+
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]

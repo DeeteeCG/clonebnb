@@ -1,4 +1,4 @@
-<h1> this is index page</h1>
+<h1> Do your job, verify the listings</h1>
 
 <h1>Listings</h1>
 
@@ -22,7 +22,7 @@
   </thead>
 
   <tbody>
-    <% @listings = Listing.where(verification: true).order('updated_at DESC, title').page params[:page] %>
+    <% @listings = Listing.order('verification, updated_at DESC, title').page params[:page] %>
     <% @listings.all.each do |listing| %>
       <tr>
         <td><%= listing.title %></td>
@@ -37,17 +37,14 @@
         <td><%= listing.num_of_beds %></td>
         <td><%= listing.price %></td>
         <td><%= link_to 'Show', listing %></td>
-        <% if current_user.role == 'superadmin'%>
+        <% if current_user.id == listing.user_id %>
           <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
           <td><%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% elsif current_user.id == listing.user_id %>
-          <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
-          <td><%= link_to 'Destroy', listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' } %></td>      
         <% end %>
         <% if listing.verification == false %>
-        <td><%= link_to 'Verify', verify_listing_path(listing), data: {confirm: 'Are you sure?'} %> </td>
+          <td><%= link_to 'Verify', verify_listing_path(listing), data: {confirm: 'Are you sure?'} %> </td>
         <% else %>
-        <td><%= link_to 'Unverify', verify_listing_path(listing), data: {confirm: 'Are you sure?'} %> </td>
+          <td><%= link_to 'Unverify', verify_listing_path(listing), data: {confirm: 'Are you sure?'} %> </td>
         <% end %>
       </tr>
     <% end %>
