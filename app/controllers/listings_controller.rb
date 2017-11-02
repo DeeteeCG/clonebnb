@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy, :verify]
 
   # GET /listings
   # GET /listings.json
@@ -7,8 +7,33 @@ class ListingsController < ApplicationController
     if !signed_in?
       redirect_to sign_in_path
     else
-      @listings = Listing.all
-       @listing = Listing.new
+      # customer?
+      if allowed?(action: 'for_superadmin_customer', user: current_user)
+        @listings = Listing.all
+        @listing = Listing.new
+      else
+        return redirect_back(fallback_location: root_path)
+      end
+    end
+  end
+
+  def verify
+    if allowed?(action: 'for_superadmin_moderator', user: current_user)
+      if @listing.verification == false
+        @listing.verification = true
+        @listing.save
+      else
+        @listing.verification = false
+        @listing.save
+      end
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def verify_listings
+    if allowed?(action: 'for_superadmin_moderator', user:current_user)
+    else
+      return redirect_back(fallback_location: root_path)
     end
   end
 
@@ -22,7 +47,11 @@ class ListingsController < ApplicationController
     if !signed_in?
       redirect_to sign_in_path
     else
-      @listing = Listing.new
+      if allowed?(action: 'for_superadmin_customer', user: current_user)
+        @listing = Listing.new
+      else
+        return redirect_back(fallback_location: root_path)
+      end
     end
   end
 
@@ -63,9 +92,10 @@ class ListingsController < ApplicationController
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
+    allowed?(action: 'destroy', user: current_user)
     @listing.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Listing was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Listing was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
